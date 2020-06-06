@@ -138,12 +138,14 @@ filtro2(m,s){
   }
   return 0;
 }
+
   render() {
     const { classes } = this.props;
+    
     return (
       <div >
 {(this.state.datafinal.length>0)&&<div className="col-12" style={{ padding: "10%",paddingTop: "5%", paddingBottom: "0%", textAlign: "center" }}>
-<h1 style={{paddingBottom: "5%", paddingLeft: "10%", color:"grey"}}>What is the distribution of sales of the products by day of the week?</h1>  
+<h1 style={{paddingBottom: "5%", paddingLeft: "10%", color:"grey"}}>1. What is the distribution of sales of the products by day of the week?</h1>  
 
 <ResponsiveContainer width="105%" height={300}>
 <BarChart
@@ -196,12 +198,7 @@ filtro2(m,s){
         <Bar dataKey="Sunday" fill="#8884d8" />
       </BarChart>
       </ResponsiveContainer>
-      <ResponsiveContainer width="35%" height={400}>    
-      <PieChart width={400} height={400}>
-        <Pie dataKey="value" isAnimationActive={true} data={this.state.datafinaldosp} cx={200} cy={200} outerRadius={80} fill="#82ca9d" label />
-        <Tooltip />
-      </PieChart>
-      </ResponsiveContainer>
+  
       </div>
         
 
@@ -219,3 +216,12 @@ Question1.propTypes = {
 
 };
 export default withStyles(NoEncontradoStyles)(Question1);
+
+const renderCustomizedLabel = ({
+  x, y, name
+}) => {
+  return (
+    <text x={x} y={y} fill="black" textAnchor="end" dominantBaseline="central">
+      {name}
+    </text>
+  )}

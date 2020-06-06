@@ -71,7 +71,14 @@ generateone(){
 
 
 }
-
+getRandomColor() {
+  var letters = '0123456789ABCDEF'.split('');
+  var color = '#';
+  for (var i = 0; i < 6; i++ ) {
+      color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+      }
   render() {
     const { classes } = this.props;
     var self= this;
@@ -85,7 +92,7 @@ generateone(){
 <BarChart
         data={this.state.data}
         margin={{
-          top: 5, right: 30, left: 100, bottom: 5,
+          top: 5, right: 30, left: 150, bottom: 5,
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
@@ -94,10 +101,10 @@ generateone(){
         <Tooltip />
         <Legend verticalAlign="top" wrapperStyle={{ lineHeight: '40px' }} />
         <ReferenceLine y={0} stroke="#000" />
-        <Brush dataKey="name" height={30} stroke="#8884d8" />
-        <Bar dataKey="April" fill="#8884d8" />
-        <Bar dataKey="February" fill="#8884d8" />
-        <Bar dataKey="March" fill="#8884d8" />
+        <Brush dataKey="name" height={30} stroke={this.getRandomColor()} />
+        <Bar dataKey="April" fill={this.getRandomColor()} />
+        <Bar dataKey="February" fill={this.getRandomColor()} />
+        <Bar dataKey="March" fill={this.getRandomColor()} />
         
       </BarChart> 
       </ResponsiveContainer>

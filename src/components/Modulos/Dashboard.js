@@ -15,6 +15,9 @@ import Question10 from './Question10';
 import Question12 from './Question12';
 import Question13 from './Question13';
 import Question16 from './Question16';
+import Question14 from './Question14';
+import Question17 from './Question17';
+import Question18 from './Question18';
 
 class Dashboard extends Component {
 
@@ -39,7 +42,10 @@ class Dashboard extends Component {
 
 <Question12/>
 <Question13/>
+<Question14/>
 <Question16/>
+<Question17/>
+<Question18/>
 
       </div>);
 

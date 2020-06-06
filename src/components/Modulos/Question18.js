@@ -6,7 +6,7 @@ import {
   BarChart, Bar, Brush, ReferenceLine, XAxis, YAxis, CartesianGrid, Tooltip, Legend,PieChart, Pie, ResponsiveContainer
 } from 'recharts';
 
-class Question7 extends Component {
+class Question18 extends Component {
 
   state={
     data:{
@@ -23,7 +23,7 @@ class Question7 extends Component {
 
 componentDidMount(){
   var self = this;
-  var url = 'http://ec2-18-212-16-222.compute-1.amazonaws.com:8084/analytics/question7';
+  var url = 'http://ec2-18-212-16-222.compute-1.amazonaws.com:8084/analytics/question17';
 
   fetch(url, {
       method: 'GET',
@@ -42,27 +42,6 @@ componentDidMount(){
     }
     );
   
-}
-generateone(){
-  var data= this.state.data;
-  var u = Object.keys(data);
-  var datafinaldos=[];
-  for(var i=0; i<u.length;i++){
-    let s= u[i];
-    var fina=[];
-    for(var j=0; j< Object.keys(data[s]).length;j++){
-      let temp={"Days": Object.keys(data[s])[j],"Number of people":Object.values(data[s])[j]}
-      fina.push(temp);
-    }
-    
-
-    datafinaldos.push(fina);
-
-}
-console.log(datafinaldos);
-  this.setState({datafinaldos:datafinaldos});
-  
-
 }
 getName(i){
   if(i==0){
@@ -87,46 +66,55 @@ getName(i){
     return "Tienda Test 170"
   }
   }
-  getRandomColor() {
-    var letters = '0123456789ABCDEF'.split('');
-    var color = '#';
-    for (var i = 0; i < 6; i++ ) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-        }
+generateone(){
+  var data= this.state.data;
+  var u = Object.keys(data);
+  var temp =[]
+for(var i=0; i<u.length; i++){
+var temp2= {"Age range": u[i], "Quantity of people": data[u[i]]};
+temp.push(temp2);
+}
+this.setState({datafinal:temp});
+}
+getRandomColor() {
+  var letters = '0123456789ABCDEF'.split('');
+  var color = '#';
+  for (var i = 0; i < 6; i++ ) {
+      color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+      }
+
   render() {
     const { classes } = this.props;
     var self= this;
     return (
       <div >
 {(true)&&<div className="col-12" style={{ padding: "10%",paddingTop: "5%", paddingBottom: "0%", textAlign: "center" }}>
-<h1 style={{paddingBottom: "5%", paddingLeft: "10%", color:"grey"}}>7. Store visitors by time of the day</h1>  
+<h1 style={{paddingBottom: "5%", paddingLeft: "10%", color:"grey"}}>18. Distribution of the ages of the application users.</h1>  
 
-{this.state.datafinaldos.map(function(e,i){
-  return <div><h3>{self.getName(i)}</h3>
-  <ResponsiveContainer width="105%" height={300}>
+ 
+  <ResponsiveContainer width="70%" height={300} style={ {textAlign: "center"} }>
 <BarChart
-        data={e}
+        data={this.state.datafinal}
         margin={{
-          top: 5, right: 30, left: 70, bottom: 5,
+          top: 5, right: 30, left: 150, bottom: 5,
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="Days" />
+        <XAxis dataKey="Age range" />
         <YAxis />
         <Tooltip />
         <Legend verticalAlign="top" wrapperStyle={{ lineHeight: '40px' }} />
         <ReferenceLine y={0} stroke="#000" />
-        <Brush dataKey="Days" height={30} stroke={self.getRandomColor()} />
-        <Bar dataKey="Number of people" fill={self.getRandomColor()} />
+        <Brush dataKey="Age range" height={30} stroke={this.getRandomColor()} />
+        <Bar dataKey="Quantity of people" fill={this.getRandomColor()} />
+        
         
       </BarChart> 
       </ResponsiveContainer>
-</div>
-})
 
-}
+
 
   
         
@@ -138,8 +126,8 @@ getName(i){
 
   }
 }
-Question7.propTypes = {
+Question18.propTypes = {
   classes: PropTypes.object.isRequired,
 
 };
-export default withStyles(NoEncontradoStyles)(Question7);
+export default withStyles(NoEncontradoStyles)(Question18);

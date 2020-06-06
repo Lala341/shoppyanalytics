@@ -70,28 +70,7 @@ generateone(){
 {(this.state.datafinal.length>0)&&<div className="col-12" style={{ padding: "10%",paddingLeft: "25%", paddingTop: "5%", paddingBottom: "0%", textAlign: "center" }}>
 <h1 style={{paddingBottom: "5%", paddingLeft: "0%", color:"grey"}}>5. What is the ratio between users that pay in cash vs people that pay with credit card?</h1>  
 
-<ResponsiveContainer width="80%" height={300} style={{paddingLeft: "40%"}}>
 
-    
-
-      
-      <ComposedChart
-            height={300}
-            data={this.state.datafinal}
-            margin={{
-              top: 20, right: 5, bottom: 20, left: 5,
-            }}
-          >
-            <CartesianGrid stroke="#f5f5f5" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey="value" barSize={20} fill="#413ea0" />
-            <Line type="monotone" dataKey="value" stroke="#ff7300" />
-          </ComposedChart>
-          
-          </ResponsiveContainer>
           </div>}
   
           

@@ -120,8 +120,17 @@ filtro2(m,s){
   }
   return 0;
 }
+getRandomColor() {
+  var letters = '0123456789ABCDEF'.split('');
+  var color = '#';
+  for (var i = 0; i < 6; i++ ) {
+      color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+      }
   render() {
     const { classes } = this.props;
+    var self=this;
     return (
       <div >
 {(this.state.datafinal.length>0)&&<div className="col-12" style={{ padding: "10%",paddingTop: "5%", paddingBottom: "0%", textAlign: "center" }}>
@@ -142,8 +151,8 @@ filtro2(m,s){
         <Tooltip />
         <Legend verticalAlign="top" wrapperStyle={{ lineHeight: '40px' }} />
         <ReferenceLine y={0} stroke="#000" />
-        <Brush dataKey="name" height={30} stroke="#8884d8" />
-        <Bar dataKey="value" fill="#8884d8" />
+        <Brush dataKey="name" height={30} stroke={self.getRandomColor()} />
+        <Bar dataKey="value" fill={self.getRandomColor()} />
         
       </BarChart> 
       </ResponsiveContainer>
@@ -161,8 +170,8 @@ filtro2(m,s){
         <Tooltip />
         <Legend verticalAlign="top" wrapperStyle={{ lineHeight: '40px' }} />
         <ReferenceLine y={0} stroke="#000" />
-        <Brush dataKey="name" height={30} stroke="#8884d8" />
-        <Bar dataKey="value" fill="#8884d8" />
+        <Brush dataKey="name" height={30} stroke={self.getRandomColor()} />
+        <Bar dataKey="value" fill={self.getRandomColor()} />
         
       </BarChart>  
       </ResponsiveContainer>
@@ -180,8 +189,8 @@ filtro2(m,s){
         <Tooltip />
         <Legend verticalAlign="top" wrapperStyle={{ lineHeight: '40px' }} />
         <ReferenceLine y={0} stroke="#000" />
-        <Brush dataKey="name" height={30} stroke="#8884d8" />
-        <Bar dataKey="value" fill="#8884d8" />
+        <Brush dataKey="name" height={30} stroke={self.getRandomColor()} />
+        <Bar dataKey="value" fill={self.getRandomColor()} />
         
       </BarChart>  
       </ResponsiveContainer>
@@ -199,8 +208,8 @@ filtro2(m,s){
         <Tooltip />
         <Legend verticalAlign="top" wrapperStyle={{ lineHeight: '40px' }} />
         <ReferenceLine y={0} stroke="#000" />
-        <Brush dataKey="name" height={30} stroke="#8884d8" />
-        <Bar dataKey="value" fill="#8884d8" />
+        <Brush dataKey="name" height={30} stroke={self.getRandomColor()} />
+        <Bar dataKey="value" fill={self.getRandomColor()} />
         
       </BarChart>  
 

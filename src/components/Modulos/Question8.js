@@ -87,7 +87,14 @@ console.log(datafinaldos);
   
 
 }
-
+getRandomColor() {
+  var letters = '0123456789ABCDEF'.split('');
+  var color = '#';
+  for (var i = 0; i < 6; i++ ) {
+      color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+      }
   render() {
     const { classes } = this.props;
     var self= this;
@@ -111,8 +118,8 @@ console.log(datafinaldos);
         <Tooltip />
         <Legend verticalAlign="top" wrapperStyle={{ lineHeight: '40px' }} />
         <ReferenceLine y={0} stroke="#000" />
-        <Brush dataKey="Days" height={30} stroke="#8884d8" />
-        <Bar dataKey="Number of people" fill="#8884d8" />
+        <Brush dataKey="Days" height={30} stroke={self.getRandomColor()} />
+        <Bar dataKey="Number of people" fill={self.getRandomColor()} />
         
       </BarChart> 
       </ResponsiveContainer>
