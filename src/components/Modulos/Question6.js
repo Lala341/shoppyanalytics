@@ -9,10 +9,7 @@ import {
 class Question6 extends Component {
 
   state={
-    data:{
-
-
-    },
+    data:[],
     datafinal:[],
     datafinaldosp:[]
     , 

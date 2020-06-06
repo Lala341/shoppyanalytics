@@ -9,16 +9,35 @@ import {
 class Question12 extends Component {
 
   state={
-    data:{
-
-
-    },
+    data:[],
     datafinal:[],
     datafinaldos:[],
     datafinaldosp:[],
     datafinaltres:[]
     }
-
+getName(i){
+if(i==0){
+  return "127 Store"
+}
+if(i==1){
+  return "De Una"
+}
+if(i==2){
+  return "La Otra Tienda"
+}
+if(i==3){
+  return "Mikro"
+}
+if(i==4){
+  return "Minisa"
+}
+if(i==5){
+  return "None"
+}
+if(i==6){
+  return "Tienda Test 170"
+}
+}
 componentDidMount(){
   var self = this;
   var url = 'http://ec2-18-212-16-222.compute-1.amazonaws.com:8084/analytics/question12';
@@ -43,32 +62,15 @@ componentDidMount(){
 }
 generateone(){
   var data= this.state.data;
-  var keys= Object.keys(data);
-  var datafinal=[];
-  var datafinaldos= [];
-  if(keys!==undefined){
-    let temp={};
-    for(var i=0;i<4;i++){
-      temp={name: keys[i],value: data[keys[i]]};
-      
-      datafinal.push(temp);
-    }
-    for(var i=0;i<keys.length;i++){
-      temp={name: keys[i],value: data[keys[i]]};
-      
-      datafinaldos.push(temp);
-    }
-    
-    this.setState({datafinal:datafinal, datafinaldos:datafinaldos});
-  }
+  
 }
 
   render() {
     const { classes } = this.props;
     return (
       <div >
-{(this.state.datafinal.length>0)&&<div className="col-12" style={{ padding: "10%",paddingLeft: "25%", paddingTop: "5%", paddingBottom: "0%", textAlign: "center" }}>
-<h1 style={{paddingBottom: "5%", paddingLeft: "0%", color:"grey"}}>5. What is the ratio between users that pay in cash vs people that pay with credit card?</h1>  
+{(this.state.data.length>0)&&<div className="col-12" style={{ padding: "10%",paddingLeft: "25%", paddingTop: "5%", paddingBottom: "0%", textAlign: "center" }}>
+<h1 style={{paddingBottom: "5%", paddingLeft: "0%", color:"grey"}}>12. Number of customers who only shopped once</h1>  
 
 
           </div>}
@@ -79,17 +81,16 @@ generateone(){
   <thead>
     <tr>
       <th scope="col">User Id</th>
-      <th scope="col">Counte</th>
+      <th scope="col">Count</th>
     </tr>
   </thead>
   <tbody>
-
-    {this.state.data.map((e)=>
-      <tr>
+    {this.state.data.map(function(e){
+     return <tr>
       <th scope="row">{e["_id"]}</th>
       <td>{e["count"]}</td>
     </tr>
-    )}
+    })}
     
   </tbody>
 </table>

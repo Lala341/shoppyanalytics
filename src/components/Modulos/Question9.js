@@ -43,6 +43,29 @@ componentDidMount(){
     );
   
 }
+getName(i){
+  if(i==0){
+    return "127 Store"
+  }
+  if(i==1){
+    return "De Una"
+  }
+  if(i==2){
+    return "La Otra Tienda"
+  }
+  if(i==3){
+    return "Mikro"
+  }
+  if(i==4){
+    return "Minisa"
+  }
+  if(i==5){
+    return "None"
+  }
+  if(i==6){
+    return "Tienda Test 170"
+  }
+  }
 generateone(){
   var data= this.state.data;
   var u = Object.keys(data);

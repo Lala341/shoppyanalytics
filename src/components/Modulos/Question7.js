@@ -64,16 +64,39 @@ console.log(datafinaldos);
   
 
 }
-
+getName(i){
+  if(i==0){
+    return "127 Store"
+  }
+  if(i==1){
+    return "De Una"
+  }
+  if(i==2){
+    return "La Otra Tienda"
+  }
+  if(i==3){
+    return "Mikro"
+  }
+  if(i==4){
+    return "Minisa"
+  }
+  if(i==5){
+    return "None"
+  }
+  if(i==6){
+    return "Tienda Test 170"
+  }
+  }
   render() {
     const { classes } = this.props;
+    var self= this;
     return (
       <div >
 {(true)&&<div className="col-12" style={{ padding: "10%",paddingTop: "5%", paddingBottom: "0%", textAlign: "center" }}>
 <h1 style={{paddingBottom: "5%", paddingLeft: "10%", color:"grey"}}>7. Store visitors by time of the day</h1>  
 
 {this.state.datafinaldos.map(function(e,i){
-  return <div><h3>{[i]}</h3>
+  return <div><h3>{self.getName(i)}</h3>
   <ResponsiveContainer width="105%" height={300}>
 <BarChart
         data={e}
