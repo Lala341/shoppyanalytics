@@ -74,7 +74,7 @@ generateone(){
       <div >
 {(this.state.datafinal.length>0)&&<div className="col-12" style={{ padding: "10%",paddingTop: "0%",paddingBottom: "4%", textAlign: "center" }}>
 
-<h1 style={{paddingBottom: "5%",paddingLeft: "10%",  color:"grey"}}>What is the distribution of stores frequented by users?</h1>  
+<h1 style={{paddingBottom: "5%",paddingLeft: "10%",  color:"grey"}}>2. What is the distribution of stores frequented by customers?</h1>  
 
 <div className="row">
 

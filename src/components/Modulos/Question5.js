@@ -68,7 +68,7 @@ generateone(){
     return (
       <div >
 {(this.state.datafinal.length>0)&&<div className="col-12" style={{ padding: "10%",paddingLeft: "25%", paddingTop: "5%", paddingBottom: "0%", textAlign: "center" }}>
-<h1 style={{paddingBottom: "5%", paddingLeft: "0%", color:"grey"}}>What is the radio between users that pay in cash vs people that pay with credit card?</h1>  
+<h1 style={{paddingBottom: "5%", paddingLeft: "0%", color:"grey"}}>5. What is the ratio between users that pay in cash vs people that pay with credit card?</h1>  
 
 <ResponsiveContainer width="80%" height={300} style={{paddingLeft: "40%"}}>
 

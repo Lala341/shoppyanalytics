@@ -6,7 +6,7 @@ import {
   BarChart, Bar, Brush, ReferenceLine, XAxis, YAxis, CartesianGrid, Tooltip, Legend,PieChart, Pie, ResponsiveContainer
 } from 'recharts';
 
-class Question3 extends Component {
+class Question8 extends Component {
 
   state={
     data:{
@@ -16,12 +16,14 @@ class Question3 extends Component {
     datafinal:[],
     datafinaldos:[],
     datafinaldosp:[],
-    datafinaltres:[]
+    datafinaltres:[],
+    datafinalcuatro:[]
+    
     }
 
 componentDidMount(){
   var self = this;
-  var url = 'http://ec2-18-212-16-222.compute-1.amazonaws.com:8084/analytics/question3';
+  var url = 'http://ec2-18-212-16-222.compute-1.amazonaws.com:8084/analytics/question8';
 
   fetch(url, {
       method: 'GET',
@@ -43,59 +45,59 @@ componentDidMount(){
 }
 generateone(){
   var data= this.state.data;
-  var keys= Object.keys(data);
-  var datafinal=[];
-  var datafinaldosp=[];
-  if(keys!==undefined){
-    var keysbrands= Object.keys(data[keys[0]].brands);
-    let temp={};
-    for(var i=0;i<keys.length;i++){
-      temp={name: data[keys[i]].name};
-      
-      for(var j=0;j<keysbrands.length;j++){
-      
-        temp[keysbrands[j]]=data[keys[i]].brands[keysbrands[j]];
-        
-      }
-      datafinal.push(temp);
+  var u = Object.keys(data);
+  var datafinaldos=[];
+  for(var i=0; i<u.length;i++){
+    let s= u[i];
+    var fina=[];
+    for(var j=0; j< Object.keys(data[s]).length;j++){
+      let temp={"Days": Object.keys(data[s])[j],"Number of people":Object.values(data[s])[j]}
+      fina.push(temp);
     }
     
-    this.setState({datafinal:datafinal});
-  }
+
+    datafinaldos.push(fina);
+
+}
+console.log(datafinaldos);
+  this.setState({datafinaldos:datafinaldos});
+  
+
 }
 
   render() {
     const { classes } = this.props;
     return (
       <div >
-{(this.state.datafinal.length>0)&&<div className="col-12" style={{ padding: "10%",paddingTop: "0%", paddingBottom: "0%", textAlign: "center" }}>
-<h1 style={{paddingBottom: "5%", paddingLeft: "10%", color:"grey"}}>3. What is the behavior of the brands given the stores?</h1>  
+{(true)&&<div className="col-12" style={{ padding: "10%",paddingTop: "5%", paddingBottom: "0%", textAlign: "center" }}>
+<h1 style={{paddingBottom: "5%", paddingLeft: "10%", color:"grey"}}>8. Store visitors by day of the week</h1>  
 
-<ResponsiveContainer width="105%" height={300}>
+{this.state.datafinaldos.map(function(e,i){
+  return <div><h3>{[i]}</h3>
+  <ResponsiveContainer width="105%" height={300}>
 <BarChart
-        data={this.state.datafinal}
+        data={e}
         margin={{
           top: 5, right: 30, left: 70, bottom: 5,
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
+        <XAxis dataKey="Days" />
         <YAxis />
         <Tooltip />
         <Legend verticalAlign="top" wrapperStyle={{ lineHeight: '40px' }} />
         <ReferenceLine y={0} stroke="#000" />
-        <Brush dataKey="name" height={30} stroke="#8884d8" />
+        <Brush dataKey="Days" height={30} stroke="#8884d8" />
+        <Bar dataKey="Number of people" fill="#8884d8" />
         
-        <Bar dataKey="Alqueria" fill="#82ca9d" />
-        <Bar dataKey="Corona" fill="yellow" />
-        <Bar dataKey="Doritos" fill="violet" />
-        <Bar dataKey="Poker" fill="blue" />
-      </BarChart>  
-
+      </BarChart> 
       </ResponsiveContainer>
+</div>
+})
 
-      
+}
 
+  
         
           </div>}
   
@@ -105,8 +107,8 @@ generateone(){
 
   }
 }
-Question3.propTypes = {
+Question8.propTypes = {
   classes: PropTypes.object.isRequired,
 
 };
-export default withStyles(NoEncontradoStyles)(Question3);
+export default withStyles(NoEncontradoStyles)(Question8);

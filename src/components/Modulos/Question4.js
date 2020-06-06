@@ -125,7 +125,7 @@ filtro2(m,s){
     return (
       <div >
 {(this.state.datafinal.length>0)&&<div className="col-12" style={{ padding: "10%",paddingTop: "5%", paddingBottom: "0%", textAlign: "center" }}>
-<h1 style={{paddingBottom: "5%", paddingLeft: "10%", color:"grey"}}>What is the distribution of sales of the products by day of the week?</h1>  
+<h1 style={{paddingBottom: "5%", paddingLeft: "10%", color:"grey"}}>4. Which products are more popular based on age group?</h1>  
 
 
   <h3>18-25</h3>
