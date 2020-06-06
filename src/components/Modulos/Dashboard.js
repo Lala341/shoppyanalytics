@@ -11,6 +11,7 @@ import Question6 from './Question6';
 import Question7 from './Question7';
 import Question8 from './Question8';
 import Question9 from './Question9';
+import Question10 from './Question10';
 
 class Dashboard extends Component {
 
@@ -31,6 +32,8 @@ class Dashboard extends Component {
 <Question7/>
 <Question8/>
 <Question9/>
+<Question10/>
+
       </div>);
 
   }
