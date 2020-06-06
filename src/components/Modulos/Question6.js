@@ -65,13 +65,13 @@ generateone(){
 
 <h1 style={{paddingBottom: "5%",paddingLeft: "10%",  color:"grey"}}>6. How do products of the same category but different brands compare to each other?</h1>  
 
-<div className="row">
 
-<ResponsiveContainer width="50%" height={300}>
+
+<ResponsiveContainer width="100%" height={300}>
 <BarChart
         data={this.state.ventas}
         margin={{
-          top: 5, right: 30, left: 20, bottom: 5,
+          top: 5, right: 30, left: 100, bottom: 5,
         }}
         barSize={20}
         
@@ -84,11 +84,11 @@ generateone(){
         <Bar dataKey="sales" fill="#8884d8" background={{ fill: '#eee' }} />
       </BarChart>
 </ResponsiveContainer>
-<ResponsiveContainer width="50%" height={300}>
+<ResponsiveContainer width="100%" height={300}>
 <BarChart
         data={this.state.ventasdoritos}
         margin={{
-          top: 5, right: 30, left: 20, bottom: 5,
+          top: 5, right: 30, left: 100, bottom: 5,
         }}
         barSize={20}
         
@@ -102,7 +102,7 @@ generateone(){
       </BarChart>
 </ResponsiveContainer>
 </div>
-          </div>}
+  }
   
 
 
