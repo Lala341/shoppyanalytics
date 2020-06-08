@@ -64,7 +64,7 @@ generateone(){
   for(var i=0; i<Object.values(data["18-25"]).length;i++){
     s= data["18-25"][i];
     temp=  { name:  s.name, 
-    value: s.quantity}
+    sales: s.quantity}
     
 
     datafinal.push(temp);
@@ -73,7 +73,7 @@ generateone(){
 for(var i=0; i<Object.values(data["25-40"]).length;i++){
   s= data["25-40"][i];
   temp=  { name:  s.name, 
-  value: s.quantity}
+  sales: s.quantity}
   
 
   datafinaldos.push(temp);
@@ -82,7 +82,7 @@ for(var i=0; i<Object.values(data["25-40"]).length;i++){
 for(var i=0; i<Object.values(data["40-60"]).length;i++){
   s= data["40-60"][i];
   temp=  { name:  s.name, 
-  value: s.quantity}
+  sales: s.quantity}
   
 
   datafinaltres.push(temp);
@@ -91,7 +91,7 @@ for(var i=0; i<Object.values(data["40-60"]).length;i++){
 for(var i=0; i<Object.values(data["underage"]).length;i++){
   s= data["underage"][i];
   temp=  { name:  s.name, 
-  value: s.quantity}
+  sales: s.quantity}
   
 
   datafinalcuatro.push(temp);
@@ -152,7 +152,7 @@ getRandomColor() {
         <Legend verticalAlign="top" wrapperStyle={{ lineHeight: '40px' }} />
         <ReferenceLine y={0} stroke="#000" />
         <Brush dataKey="name" height={30} stroke={self.getRandomColor()} />
-        <Bar dataKey="value" fill={self.getRandomColor()} />
+        <Bar dataKey="sales" fill={self.getRandomColor()} />
         
       </BarChart> 
       </ResponsiveContainer>
@@ -171,7 +171,7 @@ getRandomColor() {
         <Legend verticalAlign="top" wrapperStyle={{ lineHeight: '40px' }} />
         <ReferenceLine y={0} stroke="#000" />
         <Brush dataKey="name" height={30} stroke={self.getRandomColor()} />
-        <Bar dataKey="value" fill={self.getRandomColor()} />
+        <Bar dataKey="sales" fill={self.getRandomColor()} />
         
       </BarChart>  
       </ResponsiveContainer>
@@ -190,7 +190,7 @@ getRandomColor() {
         <Legend verticalAlign="top" wrapperStyle={{ lineHeight: '40px' }} />
         <ReferenceLine y={0} stroke="#000" />
         <Brush dataKey="name" height={30} stroke={self.getRandomColor()} />
-        <Bar dataKey="value" fill={self.getRandomColor()} />
+        <Bar dataKey="sales" fill={self.getRandomColor()} />
         
       </BarChart>  
       </ResponsiveContainer>
@@ -209,7 +209,7 @@ getRandomColor() {
         <Legend verticalAlign="top" wrapperStyle={{ lineHeight: '40px' }} />
         <ReferenceLine y={0} stroke="#000" />
         <Brush dataKey="name" height={30} stroke={self.getRandomColor()} />
-        <Bar dataKey="value" fill={self.getRandomColor()} />
+        <Bar dataKey="sales" fill={self.getRandomColor()} />
         
       </BarChart>  
 

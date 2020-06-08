@@ -3,9 +3,57 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { NoEncontradoStyles } from "../../styles";
 import {
-  BarChart, Bar, Brush, ReferenceLine, XAxis, YAxis, CartesianGrid, Tooltip, Legend,PieChart, Pie, ResponsiveContainer
+  BarChart, Bar, Brush, ReferenceLine, XAxis, YAxis, CartesianGrid, Tooltip, Legend,PieChart, Pie, ResponsiveContainer, Sector
 } from 'recharts';
 
+ 
+
+const renderActiveShape = (props) => {
+	const RADIAN = Math.PI / 180;
+	const {
+		cx, cy, midAngle, innerRadius, outerRadius, startAngle, endAngle,
+		fill, payload, percent, value,
+	} = props;
+	const sin = Math.sin(-RADIAN * midAngle);
+	const cos = Math.cos(-RADIAN * midAngle);
+	const sx = cx + (outerRadius + 10) * cos;
+	const sy = cy + (outerRadius + 10) * sin;
+	const mx = cx + (outerRadius + 30) * cos;
+	const my = cy + (outerRadius + 30) * sin;
+	const ex = mx + (cos >= 0 ? 1 : -1) * 22;
+	const ey = my;
+	const textAnchor = cos >= 0 ? 'start' : 'end';
+
+	return (
+		<g>
+			<text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>{payload.name}</text>
+			<Sector
+				cx={cx}
+				cy={cy}
+				innerRadius={innerRadius}
+				outerRadius={outerRadius}
+				startAngle={startAngle}
+				endAngle={endAngle}
+				fill={fill}
+			/>
+			<Sector
+				cx={cx}
+				cy={cy}
+				startAngle={startAngle}
+				endAngle={endAngle}
+				innerRadius={outerRadius + 6}
+				outerRadius={outerRadius + 10}
+				fill={fill}
+			/>
+			<path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke={fill} fill="none" />
+			<circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
+			<text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} textAnchor={textAnchor} fill="#333">{`PV ${value}`}</text>
+			<text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} dy={18} textAnchor={textAnchor} fill="#999">
+				{`(Rate ${(percent * 100).toFixed(2)}%)`}
+			</text>
+		</g>
+	);
+};
 class Question2 extends Component {
 
   state={
@@ -14,7 +62,9 @@ class Question2 extends Component {
 
     },
     datafinal:[],
-    datafinaldosp:[]
+    datafinaldosp:[],
+
+  activeIndex: 0
     }
 
 componentDidMount(){
@@ -47,17 +97,17 @@ generateone(){
   if(keys!==undefined){
     let temp={};
     for(var i=0;i<keys.length;i++){
-      temp={store: keys[i], quantity: data[keys[i]]};
+      temp={store: keys[i], sales: data[keys[i]]};
       datafinal.push(temp);
     }
     let sum=0;
     var datafinaldosp=[];
     for(var i=0;i<datafinal.length;i++){
-      sum+=datafinal[i].quantity;
+      sum+=datafinal[i].sales;
       
     }
     for(var i=0;i<datafinal.length;i++){
-      temp={name: keys[i], value:  parseFloat(((datafinal[i].quantity/sum)*100).toFixed(2))};
+      temp={name: keys[i], value:  parseFloat(((datafinal[i].sales/sum)*100).toFixed(2))};
       datafinaldosp.push(temp);
       
     
@@ -68,6 +118,20 @@ generateone(){
 
 }
 
+
+onPieEnter = (data, index) => {
+  this.setState({
+    activeIndex: index,
+  });
+};
+getRandomColor() {
+  var letters = '0123456789ABCDEF'.split('');
+  var color = '#';
+  for (var i = 0; i < 6; i++ ) {
+      color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+      }
   render() {
     const { classes } = this.props;
     return (
@@ -76,16 +140,27 @@ generateone(){
 
 <h1 style={{paddingBottom: "5%",paddingLeft: "10%",  color:"grey"}}>2. What is the distribution of stores frequented by customers?</h1>  
 
-<div className="row">
+<div className="row" style={{paddingLeft: "15%"}}>
 
-<ResponsiveContainer width="35%" height={400}>  
+<ResponsiveContainer width={500} height={400} >  
 
-      <PieChart   width={400} height={400}>
-        <Pie dataKey="value" isAnimationActive={true} data={this.state.datafinaldosp} cx={200} cy={200} outerRadius={80} fill="#82ca9d" label />
+      <PieChart   width={500} height={400}>
+        <Pie
+					activeIndex={this.state.activeIndex}
+					activeShape={renderActiveShape}
+					data={this.state.datafinaldosp}
+					cx={250}
+					cy={200}
+					innerRadius={60}
+					outerRadius={80}
+					fill="#8884d8"
+					dataKey="value"
+					onMouseEnter={this.onPieEnter}
+				/>
         <Tooltip />
       </PieChart>
       </ResponsiveContainer>
-<ResponsiveContainer width="50%" height={300}>
+<ResponsiveContainer width="40%" height={300}>
 <BarChart
         data={this.state.datafinal}
         margin={{
@@ -99,7 +174,7 @@ generateone(){
         <Tooltip />
         <Legend />
         <CartesianGrid strokeDasharray="3 3" />
-        <Bar dataKey="quantity" fill="#8884d8" background={{ fill: '#eee' }} />
+        <Bar dataKey="sales" fill={this.getRandomColor()} background={{ fill: '#eee' }} />
       </BarChart>
 </ResponsiveContainer>
 </div>
